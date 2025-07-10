@@ -39,10 +39,18 @@ class TheMarketingCrew():
     def head_of_marketing(self)-> Agent:
         return Agent(
             config=self.agents_config['head_of_marketing'],
+            tools=[
+                SerperDevTool(),
+                ScrapeWebsiteTool(),
+                DirectoryReadTool('resources/drafts'),
+                FileWriterTool(),
+                FileReadTool()
+            ],
             reasoning=True,
             inject_date=True,
             llm=llm,
-            allow_delegation=True
+            allow_delegation=True,
+            max_rpm=3
         )
     
     @agent
@@ -56,10 +64,10 @@ class TheMarketingCrew():
                 FileWriterTool(),
                 FileReadTool()
             ],
-            reasoning=True,
             inject_date=True,
             llm=llm,
-            allow_delegation=True
+            allow_delegation=True,
+            max_rpm=3
         )
     
     @agent
@@ -73,10 +81,11 @@ class TheMarketingCrew():
                 FileWriterTool(),
                 FileReadTool()
             ],
-            reasoning=True,
             inject_date=True,
             llm=llm,
-            allow_delegation=True
+            allow_delegation=True,
+            max_iter=5,
+            max_rpm=3
         )
     
     @agent
@@ -90,10 +99,11 @@ class TheMarketingCrew():
                 FileWriterTool(),
                 FileReadTool()
             ],
-            reasoning=True,
             inject_date=True,
             llm=llm,
-            allow_delegation=True
+            allow_delegation=True,
+            max_iter=3,
+            max_rpm=3
         )
     
 

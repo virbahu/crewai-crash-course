@@ -23,6 +23,7 @@ prepare_marketing_strategy:
     <Target Audience>{target_audience}</Target Audience>
 
     Current date: {current_date}
+    Refer to the market research report for insights and building the strategy.
 
   expected_output: >
     A detailed marketing strategy document that includes:
@@ -30,6 +31,7 @@ prepare_marketing_strategy:
     - Required budget
     - Recommended marketing channels
     - detailed 
+    Store the marketing strategy in 'resources/drafts/marketing_strategy_report.md'.
 
 create_content_calendar:
   description: >
@@ -45,6 +47,7 @@ create_content_calendar:
     - Topics and formats for each piece of content
     - Publishing schedule
     - Key themes and campaigns
+    Store the content calendar in 'resources/drafts/content_calendar.md'.
 
 prepare_post_drafts:
   description: >
@@ -59,7 +62,7 @@ prepare_post_drafts:
     Drafts for:
     - Social media posts: LinkedIn, Twitter, Instagram
     - Email campaigns
-    Each draft should be ready for review and feedback.
+    Each draft should be ready for review and feedback. Save the drafts in 'resources/drafts/posts/' folder in markdown format.
 
 prepare_scripts_for_reels:
   description: >
@@ -75,6 +78,7 @@ prepare_scripts_for_reels:
     - Engaging hooks
     - Key messages
     - Call to action
+    Each script should be ready for filming and editing. Save the scripts in 'resources/drafts/reels/' folder in markdown format. And assign tasks to the relevant team members.
 
 content_research_for_blogs:
   description: >
@@ -107,6 +111,7 @@ draft_blogs:
     - Well-structured content
     - SEO optimization
     - Ready for review and feedback
+    Each draft should be ready for review and saved in 'resources/drafts/blogs/' folder in markdown format.
 
 seo_optimization:
   description: >
