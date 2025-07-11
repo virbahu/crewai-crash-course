@@ -13,14 +13,6 @@ llm = LLM(
     temperature=0.7,
 )
 
-
-class MarketingStrategy(BaseModel):
-    target_audience: str = Field(..., description="The target audience for the marketing campaign")
-    budget: float = Field(..., description="The budget allocated for the marketing campaign")
-    channels: List[str] = Field(..., description="The marketing channels to be used in the campaign")
-    tatics: List[str] = Field(..., description="The marketing tactics to be employed in the campaign")
-    description: str = Field(..., description="A brief description of the marketing strategy, and the plan to execute it")
-
 class Content(BaseModel):
     content_type: str = Field(..., description="The type of content to be created (e.g., blog post, social media post, video)")
     topic: str = Field(..., description="The topic of the content")
@@ -67,6 +59,7 @@ class TheMarketingCrew():
             inject_date=True,
             llm=llm,
             allow_delegation=True,
+            max_iter=30,
             max_rpm=3
         )
     
@@ -118,8 +111,7 @@ class TheMarketingCrew():
     def prepare_marketing_strategy(self) -> Task:
         return Task(
             config=self.tasks_config['prepare_marketing_strategy'],
-            agent=self.head_of_marketing(),
-            output_json=MarketingStrategy
+            agent=self.head_of_marketing()
         )
     
     @task
@@ -181,7 +173,8 @@ class TheMarketingCrew():
             process=Process.sequential,
             verbose=True,
             planning=True,
-            planning_llm=llm
+            planning_llm=llm,
+            max_rpm=5
         )
     
 if __name__ == "__main__":

@@ -30,12 +30,13 @@ prepare_marketing_strategy:
     - Target audience segmentation
     - Required budget
     - Recommended marketing channels
-    - detailed 
-    Store the marketing strategy in 'resources/drafts/marketing_strategy_report.md'.
+    - Plan of action for the week containing 3 blogs to write, 2 reels to film, and 5 social media posts to create
+    - Key performance indicators (KPIs) to measure success
+    Store the marketing strategy in 'resources/drafts/marketing_strategy.md'.
 
 create_content_calendar:
   description: >
-    Create a content calendar that outlines the topics, formats, and publishing schedule for the next three weeks. The calendar should align with the marketing strategy and include key themes and campaigns.
+    Create a content calendar that outlines the topics, formats, and publishing schedule for the next one week. The calendar should align with the marketing strategy and include key themes and campaigns.
     <Product Name>{product_name}</Product Name>
     <Product Description>{product_description}</Product Description>
     <Target Audience>{target_audience}</Target Audience>
@@ -44,7 +45,7 @@ create_content_calendar:
 
   expected_output: >
     A content calendar that includes:
-    - Topics and formats for each piece of content
+    - Topics and formats for each piece of content specified in the marketing strategy
     - Publishing schedule
     - Key themes and campaigns
     Store the content calendar in 'resources/drafts/content_calendar.md'.
