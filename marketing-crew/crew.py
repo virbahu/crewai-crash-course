@@ -174,7 +174,7 @@ class TheMarketingCrew():
             verbose=True,
             planning=True,
             planning_llm=llm,
-            max_rpm=5
+            max_rpm=3
         )
     
 if __name__ == "__main__":
