@@ -12,6 +12,7 @@ This is an agentic Marketing Crew consisting of a Head of Marketing, a Creative 
 - Install the dependencies using: `uv pip install -r pyproject.toml`
 - Create a `.env` file and add the variables and their respective values mentioned in the `.sample_env` file
 - Now that we are done with all the set-up & installation steps we can start the application using the following command:
+
     ```bash
     python crew.py
     ```
