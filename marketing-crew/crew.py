@@ -6,15 +6,16 @@ from crewai_tools import SerperDevTool, ScrapeWebsiteTool, DirectoryReadTool, Fi
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
-
 _ = load_dotenv()
 llm = LLM(
     model="gemini/gemini-2.0-flash",
     temperature=0.7,
 )
 
+
 class Content(BaseModel):
-    content_type: str = Field(..., description="The type of content to be created (e.g., blog post, social media post, video)")
+    content_type: str = Field(...,
+                              description="The type of content to be created (e.g., blog post, social media post, video)")
     topic: str = Field(..., description="The topic of the content")
     target_audience: str = Field(..., description="The target audience for the content")
     tags: List[str] = Field(..., description="Tags to be used for the content")
@@ -28,7 +29,7 @@ class TheMarketingCrew():
     tasks_config = 'config/tasks.yaml'
 
     @agent
-    def head_of_marketing(self)-> Agent:
+    def head_of_marketing(self) -> Agent:
         return Agent(
             config=self.agents_config['head_of_marketing'],
             tools=[
@@ -44,7 +45,7 @@ class TheMarketingCrew():
             allow_delegation=True,
             max_rpm=3
         )
-    
+
     @agent
     def creative_content_creator(self) -> Agent:
         return Agent(
@@ -62,7 +63,7 @@ class TheMarketingCrew():
             max_iter=30,
             max_rpm=3
         )
-    
+
     @agent
     def content_writer(self) -> Agent:
         return Agent(
@@ -80,7 +81,7 @@ class TheMarketingCrew():
             max_iter=5,
             max_rpm=3
         )
-    
+
     @agent
     def seo_specialist(self) -> Agent:
         return Agent(
@@ -98,7 +99,6 @@ class TheMarketingCrew():
             max_iter=3,
             max_rpm=3
         )
-    
 
     @task
     def market_research(self) -> Task:
@@ -113,14 +113,14 @@ class TheMarketingCrew():
             config=self.tasks_config['prepare_marketing_strategy'],
             agent=self.head_of_marketing()
         )
-    
+
     @task
     def create_content_calendar(self) -> Task:
         return Task(
             config=self.tasks_config['create_content_calendar'],
             agent=self.creative_content_creator()
         )
-    
+
     @task
     def prepare_post_drafts(self) -> Task:
         return Task(
@@ -128,7 +128,7 @@ class TheMarketingCrew():
             agent=self.creative_content_creator(),
             output_json=Content
         )
-    
+
     @task
     def prepare_scripts_for_reels(self) -> Task:
         return Task(
@@ -136,14 +136,14 @@ class TheMarketingCrew():
             agent=self.creative_content_creator(),
             output_json=Content
         )
-    
+
     @task
     def content_research_for_blogs(self) -> Task:
         return Task(
             config=self.tasks_config['content_research_for_blogs'],
             agent=self.content_writer()
         )
-    
+
     @task
     def draft_blogs(self) -> Task:
         return Task(
@@ -151,7 +151,7 @@ class TheMarketingCrew():
             agent=self.content_writer(),
             output_json=Content
         )
-    
+
     @task
     def seo_optimization(self) -> Task:
         return Task(
@@ -159,7 +159,7 @@ class TheMarketingCrew():
             agent=self.seo_specialist(),
             output_json=Content
         )
-    
+
     @crew
     def marketingcrew(self) -> Crew:
         """Creates the Marketing crew"""
@@ -169,16 +169,18 @@ class TheMarketingCrew():
                 self.content_writer(),
                 self.seo_specialist()
             ],
-            tasks=self.tasks,  
+            tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
             planning=True,
             planning_llm=llm,
             max_rpm=3
         )
-    
+
+
 if __name__ == "__main__":
     from datetime import datetime
+
     inputs = {
         "product_name": "AI Powered Excel Automation Tool",
         "target_audience": "Small and Medium Enterprises (SMEs)",
