@@ -164,11 +164,7 @@ class TheMarketingCrew():
     def marketingcrew(self) -> Crew:
         """Creates the Marketing crew"""
         return Crew(
-            agents=[
-                self.creative_content_creator(),
-                self.content_writer(),
-                self.seo_specialist()
-            ],
+            agents=self.agents,
             tasks=self.tasks,
             process=Process.sequential,
             verbose=True,
