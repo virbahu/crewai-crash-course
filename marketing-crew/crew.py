@@ -47,9 +47,9 @@ class TheMarketingCrew():
         )
 
     @agent
-    def creative_content_creator(self) -> Agent:
+    def content_creator_social_media(self) -> Agent:
         return Agent(
-            config=self.agents_config['creative_content_creator'],
+            config=self.agents_config['content_creator_social_media'],
             tools=[
                 SerperDevTool(),
                 ScrapeWebsiteTool(),
@@ -65,9 +65,9 @@ class TheMarketingCrew():
         )
 
     @agent
-    def content_writer(self) -> Agent:
+    def content_writer_blogs(self) -> Agent:
         return Agent(
-            config=self.agents_config['content_writer'],
+            config=self.agents_config['content_writer_blogs'],
             tools=[
                 SerperDevTool(),
                 ScrapeWebsiteTool(),
@@ -118,14 +118,14 @@ class TheMarketingCrew():
     def create_content_calendar(self) -> Task:
         return Task(
             config=self.tasks_config['create_content_calendar'],
-            agent=self.creative_content_creator()
+            agent=self.content_writer_social_media()
         )
 
     @task
     def prepare_post_drafts(self) -> Task:
         return Task(
             config=self.tasks_config['prepare_post_drafts'],
-            agent=self.creative_content_creator(),
+            agent=self.content_writer_social_media(),
             output_json=Content
         )
 
@@ -133,7 +133,7 @@ class TheMarketingCrew():
     def prepare_scripts_for_reels(self) -> Task:
         return Task(
             config=self.tasks_config['prepare_scripts_for_reels'],
-            agent=self.creative_content_creator(),
+            agent=self.content_writer_social_media(),
             output_json=Content
         )
 
@@ -141,14 +141,14 @@ class TheMarketingCrew():
     def content_research_for_blogs(self) -> Task:
         return Task(
             config=self.tasks_config['content_research_for_blogs'],
-            agent=self.content_writer()
+            agent=self.content_writer_blogs()
         )
 
     @task
     def draft_blogs(self) -> Task:
         return Task(
             config=self.tasks_config['draft_blogs'],
-            agent=self.content_writer(),
+            agent=self.content_writer_blogs(),
             output_json=Content
         )
 
